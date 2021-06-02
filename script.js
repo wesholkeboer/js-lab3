@@ -39,12 +39,21 @@ const addSubmission = (array, newName, newScore, newDate) => {
     score: newScore,
     date: newDate,
     passed: passed,
-    // passed: newScore >= 60,
   };
   array.push(newObject);
 };
 
-// addSubmission(submissions, "Wes", 59, "2021-06-04");
+const addSubmission2 = (array, newName, newScore, newDate) => {
+  const newObject = {
+    name: newName,
+    score: newScore,
+    date: newDate,
+    passed: newScore >= 60,
+  };
+  array.push(newObject);
+};
+
+// addSubmission2(submissions, "Wes", 59, "2021-06-04");
 // console.log(submissions);
 
 const deleteSubmissionByIndex = (array, index) => {
@@ -69,7 +78,12 @@ const editSubmission = (array, index, score) => {
   array[index].passed = score >= 60;
 };
 
-// editSubmission(submissions, 1, 50);
+const editSubmission2 = (array, index, score) => {
+  array[index]["score"] = score;
+  array[index]["passed"] = score >= 60;
+};
+
+// editSubmission2(submissions, 1, 30);
 // console.log(submissions);
 
 const findSubmissionByName = (array, name) => {
@@ -108,15 +122,88 @@ const filterPassing = (array) => {
   });
 };
 
-console.log(filterPassing(submissions));
+// console.log(filterPassing(submissions));
 
 const filter90AndAbove = (array) => {
   return array.filter((item) => {
-    // return item.score >= 90;
     if (item.score >= 90) {
       return item;
     }
   });
 };
 
-console.log(filter90AndAbove(submissions));
+const filter90AndAbove2 = (array) => {
+  return array.filter((item) => {
+    return item.score >= 90;
+  });
+};
+
+// console.log(filter90AndAbove(submissions));
+
+const createRange = (start, end) => {
+  let range = [];
+  for (let i = start; i <= end; i++) {
+    range.push(i);
+  }
+  return range;
+};
+
+const createRange2 = (start, end) => {
+  let range = [];
+  let finalValue = end - start;
+  for (let i = 0; i <= finalValue; i++) {
+    range.push(start);
+    start++;
+  }
+  return range;
+};
+
+const createRange3 = (start, end) => {
+  let range = [];
+  let counter = start;
+  while (counter <= end) {
+    range.push(counter);
+    counter++;
+  }
+  return range;
+};
+
+// console.log(createRange3(2, 10));
+
+const countElements = (arrayOfStrings) => {
+  let elementCount = {};
+  arrayOfStrings.forEach((item) => {
+    if (elementCount[item] === undefined) {
+      elementCount[item] = 1;
+    } else {
+      elementCount[item]++;
+    }
+  });
+  return elementCount;
+};
+
+const countElements2 = (arrayOfStrings) => {
+  let elementCount = {};
+  arrayOfStrings.forEach((item) => {
+    if (!elementCount[item]) {
+      elementCount[item] = 1;
+    } else {
+      elementCount[item]++;
+    }
+  });
+  return elementCount;
+};
+
+const countElements3 = (arrayOfStrings) => {
+  let elementCount = {};
+  arrayOfStrings.forEach((item) => {
+    if (elementCount[item]) {
+      elementCount[item]++;
+    } else {
+      elementCount[item] = 1;
+    }
+  });
+  return elementCount;
+};
+
+console.log(countElements2(["w", "e", "s", "l", "e", "y"]));
